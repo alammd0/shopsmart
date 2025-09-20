@@ -12,9 +12,18 @@ const userSchema = new mongoose.Schema({
         unique : true
     },
 
+    phone : {
+        type : String,
+    },
+
+    image : {
+        type : String,
+    },
+
     role : {
         type : String,
         required: true,
+        default : "Buyer",
         enum : ["Seller",  "Buyer"],
     },
 
