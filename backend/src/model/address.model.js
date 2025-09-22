@@ -27,4 +27,5 @@ const addressSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model("Address", addressSchema);
+const Address = mongoose.model("Address", addressSchema);
+export default Address;

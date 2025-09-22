@@ -16,6 +16,14 @@ const adminSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+
+    category : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Category'
+        }
+    ]
 })
 
-export default mongoose.model("Admin", adminSchema);
+const Admin = mongoose.model("Admin", adminSchema);
+export default Admin;
