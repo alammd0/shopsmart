@@ -16,6 +16,13 @@ const adminSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+
+    category : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Category'
+        }
+    ]
 })
 
 const Admin = mongoose.model("Admin", adminSchema);

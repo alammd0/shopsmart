@@ -1,9 +1,13 @@
 import Category from '../model/category.model';
 import Admin from '../model/admin.model';
 
-export const getCategories = async (req, res) => {
+export const createCategories = async (req, res) => {
     try{
+
+        // find user Id 
         const userId = req.user._id;
+
+        // find category name
         const { categoryName } = req.body;
 
         if(!categoryName){
@@ -12,7 +16,7 @@ export const getCategories = async (req, res) => {
             });
         }
 
-        // find user 
+        // find Admin
         const admin = await Admin.findOne({ _id : userId });
 
         if(!admin){
@@ -22,18 +26,18 @@ export const getCategories = async (req, res) => {
         }
 
         // check if admin is admin
-        if(admin.role !== "Admin"){
-            return res.status(403).json({
-                message : "You are not admin"
-            });
-        }
+        // if(admin.role !== "Admin"){
+        //     return res.status(403).json({
+        //         message : "You are not admin"
+        //     });
+        // }
 
         // find category
         const category = await Category.findOne({ categoryName });
 
-        if(!category){
+        if(category){
             return res.status(404).json({
-                message : "Category not found"
+                message : "" + categoryName + " category already exists"
             });
         }
 
@@ -43,7 +47,7 @@ export const getCategories = async (req, res) => {
         });
 
         await Admin.findOneAndUpdate({
-            _id : userId
+            _id : admin._id
         }, {
             $push : {
                 category : newCategory._id
@@ -53,6 +57,23 @@ export const getCategories = async (req, res) => {
         return res.status(200).json({
             message : "Category fetched successfully",
             category : newCategory
+        });
+    }
+    catch(err){
+        console.error(err);
+        return res.status(500).json({
+            message : err.message || "Some error occurred"
+        });
+    }
+}
+
+export const getCategories = async (req, res) => {
+    try{
+        const getAllCategories = await Category.find({})
+
+        return res.status(200).json({
+            message : "Categories fetched successfully",
+            categories : getAllCategories
         });
     }
     catch(err){
