@@ -29,7 +29,6 @@ const authMiddleware = async (req, res, next) => {
     }
 }
 
-
 export const sellerAuthenticate = async (req, res, next) => {
     try{
         if(req.user.role !== "Buyer"){
