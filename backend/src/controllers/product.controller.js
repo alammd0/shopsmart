@@ -21,7 +21,7 @@ export const createProduct = async (req, res) => {
             });
         }
 
-        const images = req.files.image;
+        const images = req.files;
 
         if(!images){
             return res.status(400).json({
@@ -90,7 +90,7 @@ export const updateProduct = async (req, res) => {
             });
         }
 
-        const images = req.files.image;
+        const images = req.files;
 
         if(images){
             const imageURL = await fileUpload(images);

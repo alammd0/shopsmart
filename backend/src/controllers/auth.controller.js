@@ -30,9 +30,21 @@ export const register = async (req, res) => {
             password : passwordHash
         });
 
+        // create token 
+        const payload = {
+            id : user._id,
+            role : user.role,
+            email : user.email
+        };
+
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn : "1d"
+        });
+
         return res.status(201).json({
             message : "User created successfully",
-            user
+            user,
+            token
         });
     }
     catch(err){
@@ -127,15 +139,6 @@ export const getProfile = async (req, res) => {
         });
     }
 }
-
-// export const logout = async (req, res) => {
-//     try{
-
-//     }
-//     catch(err){
-//         console.log(err);
-//     }
-// }
 
 export const updateProfile = async (req, res) => {
     try{

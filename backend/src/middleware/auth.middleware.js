@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 
-const authMiddleware = async (req, res, next) => {
+export const authMiddleware = async (req, res, next) => {
     try{
         const token = req.headers.authorization;
 
@@ -34,6 +34,40 @@ export const sellerAuthenticate = async (req, res, next) => {
         if(req.user.role !== "Buyer"){
             return res.status(401).json({
                 message : "You are not a seller"
+            });
+        }
+
+        next();
+    }
+    catch(err){
+        res.status(401).json({
+            message : "Invalid token"
+        });
+    }
+}
+
+export const buyerAuthenticate = async (req, res, next) => {
+    try{
+        if(req.user.role !== "Seller"){
+            return res.status(401).json({
+                message : "You are not a buyer"
+            });
+        }
+
+        next();
+    }
+    catch(err){
+        res.status(401).json({
+            message : "Invalid token"
+        });
+    }
+}
+
+export const adminAuthenticate = async (req, res, next) => {
+    try{
+        if(req.user.role !== "Admin"){
+            return res.status(401).json({
+                message : "You are not an admin"
             });
         }
 
