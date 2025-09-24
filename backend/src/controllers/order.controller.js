@@ -7,7 +7,7 @@ import Admin from "../model/admin.model";
 export const createOrder = async (req, res) => {
     try{
         const userId = req.user._id;
-        const products = req.body.products;
+        const products = req.body.product;
 
         if(!products){
             return res.status(400).json({

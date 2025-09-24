@@ -5,7 +5,7 @@ import user from "../models/user.model";
 
 export const addToCart = async (req, res) => {
     try{
-
+        
         // find Product Id
         const { productId } = req.body;
 

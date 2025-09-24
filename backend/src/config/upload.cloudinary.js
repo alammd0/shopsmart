@@ -13,7 +13,6 @@ export const fileUpload = async(files) => {
     try{
         const uploadResponse = files.map ( (file) => {
             const base64 = `data:${file.mimetype};base64,${file.buffer.toString("base64")}`
-            // console.log(base64);
             return cloudinary.uploader.upload(base64, {
                 folder : "shopsmart",
                 resource_type: "auto"

@@ -57,7 +57,6 @@ export const createRatingAndReview = async (req, res) => {
 }
 
 // get all ratings and reviews
-
 export const getAllRatingsAndReviews = async (req, res) => {
     try{
         const allRatingsAndReviews = await RatingAndReview.find().populate("product").populate("user");
