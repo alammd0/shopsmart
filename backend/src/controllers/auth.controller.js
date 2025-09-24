@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Address from "../models/address.model.js";
 
 export const register = async (req, res) => {
     try{
@@ -81,14 +82,18 @@ export const login = async (req, res) => {
             });
         }
 
-        const token = jwt.sign({
-            id : user._id,
-            role : user.role,
-            email : user.email
-        }, {
-            secret : process.env.JWT_SECRET,
+        // const token = jwt.sign({
+        //     id : user._id,
+        //     role : user.role,
+        //     email : user.email
+        // }, {
+        //     secret : process.env.JWT_SECRET,
+        //     expiresIn : "1d"
+        // });
+
+        const token = jwt.sign({id : user._id, role : user.role, email : user.email}, process.env.JWT_SECRET, {
             expiresIn : "1d"
-        });
+        }); 
 
         return res.status(200).json({
             message : "Login successful",

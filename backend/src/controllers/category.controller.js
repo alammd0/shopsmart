@@ -1,11 +1,12 @@
-import Category from '../model/category.model';
-import Admin from '../model/admin.model';
+import Category from '../models/category.model.js';
+import Admin from '../models/admin.model.js';
 
 export const createCategories = async (req, res) => {
     try{
 
         // find user Id 
-        const userId = req.user._id;
+        const userId = req.user.id;
+        // console.log(userId);
 
         // find category name
         const { categoryName } = req.body;
@@ -18,6 +19,7 @@ export const createCategories = async (req, res) => {
 
         // find Admin
         const admin = await Admin.findOne({ _id : userId });
+        console.log(admin);
 
         if(!admin){
             return res.status(404).json({

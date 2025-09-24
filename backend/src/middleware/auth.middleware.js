@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken"
 
 export const authMiddleware = async (req, res, next) => {
     try{
@@ -31,7 +30,8 @@ export const authMiddleware = async (req, res, next) => {
 
 export const sellerAuthenticate = async (req, res, next) => {
     try{
-        if(req.user.role !== "Buyer"){
+
+        if(req.user.role !== "Seller"){
             return res.status(401).json({
                 message : "You are not a seller"
             });
@@ -48,7 +48,7 @@ export const sellerAuthenticate = async (req, res, next) => {
 
 export const buyerAuthenticate = async (req, res, next) => {
     try{
-        if(req.user.role !== "Seller"){
+        if(req.user.role !== "Buyer"){
             return res.status(401).json({
                 message : "You are not a buyer"
             });

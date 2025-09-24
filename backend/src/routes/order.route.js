@@ -1,7 +1,7 @@
 import express from "express";
-import { authMiddleware, sellerAuthenticate } from "../middleware/auth.middleware";
-import { addToCart, getCart } from "../controllers/cart.controller";
-import { cancelOrder, createOrder, getAllOrders, getSingleOrder } from "../controllers/order.controller";
+import { authMiddleware, sellerAuthenticate } from "../middleware/auth.middleware.js";
+// import { addToCart, getCart } from "../controllers/cart.controller";
+import { cancelOrder, createOrder, getAllOrders, getSingleOrder, updateOrder } from "../controllers/order.controller.js";
 
 const router = express.Router();
 
