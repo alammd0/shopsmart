@@ -1,7 +1,7 @@
 
 import express from "express";
-import { authMiddleware } from "../middleware/auth.middleware";
-import { createRatingAndReview, getAllRatingsAndReviews } from "../controllers/ratingAndReview.controller";
+import { authMiddleware } from "../middleware/auth.middleware.js";
+import { createRatingAndReview, getAllRatingsAndReviews } from "../controllers/ratingAndReview.controller.js";
 
 const router = express.Router();
 
