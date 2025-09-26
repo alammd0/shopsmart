@@ -5,6 +5,6 @@ import { createCategories, getCategories } from "../controllers/category.control
 const router =  express.Router();
 
 router.post("/", authMiddleware, adminAuthenticate, createCategories);
-router.get("/", authMiddleware, buyerAuthenticate, getCategories);
+router.get("/", authMiddleware, getCategories);
 
 export default router;

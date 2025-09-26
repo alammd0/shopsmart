@@ -8,18 +8,28 @@ const OrderSchema = new mongoose.Schema({
 
     products : [
         {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'Product'
+            product : {
+                type : mongoose.Schema.Types.ObjectId,
+                ref : 'Product'
+            },
+            quantity : {
+                type : Number,
+                default : 1
+            },
+            price : {
+                type : Number
+            }
         }
     ],
 
     totalPrice : {
-        type : Number
+        type : Number,
+        required : true
     },
 
     status : {
         type : String,
-        enum : ["Pending", "Delivered", "Cancelled"],
+        enum : ["Pending", "Shipped", "Delivered", "Cancelled"],
         default : "Pending"
     }
 })

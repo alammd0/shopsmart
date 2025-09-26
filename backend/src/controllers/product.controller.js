@@ -22,6 +22,7 @@ export const createProduct = async (req, res) => {
         }
 
         const images = req.files;
+        console.log(images);
 
         if(!images){
             return res.status(400).json({
@@ -38,6 +39,12 @@ export const createProduct = async (req, res) => {
         }
 
         const imageURL = await fileUpload(images)
+        console.log(imageURL);
+        if(!imageURL){
+            return res.status(400).json({
+                message : "Please upload an image"
+            });
+        }
 
         const product = await Product.create({
             name,
@@ -48,6 +55,12 @@ export const createProduct = async (req, res) => {
             stock,
             discount,
             user: findUser._id
+        });
+
+        await User.findByIdAndUpdate(findUser._id, {
+            $push : {
+                product : product._id
+            }
         });
 
         return res.status(201).json({
@@ -66,6 +79,7 @@ export const createProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
     try{
         const { id } = req.params;
+        console.log(id);
 
         if(!id){
             return res.status(400).json({
@@ -74,15 +88,17 @@ export const updateProduct = async (req, res) => {
         }
 
         const userId = req.user.id;
+        console.log(userId);
 
         if(!userId){
             return res.status(400).json({
                 message : "Please login first"
             });
         }
-
+        // 1. here i fixed the problem
         const {name, description, prices, category, stock, discount} = req.body;
         const product = await Product.findById(id);
+        // console.log(product.user._id.toString());
 
         if(!product){
             return res.status(400).json({
@@ -90,19 +106,22 @@ export const updateProduct = async (req, res) => {
             });
         }
 
-        const images = req.files;
-
-        if(images){
-            const imageURL = await fileUpload(images);
-            product.imageUrl = imageURL;
-        }
-
-        if(userId !== product.user){
+        
+        if(userId !== product.user._id.toString()){
             return res.status(400).json({
                 message : "You are not the owner of this product"
             });
         }
 
+        if(req.files && req.files.length > 0){
+            const images = req.files;
+            const imageURL = await fileUpload(images);
+
+            if(imageURL){
+                product.imageUrl = imageURL;
+            }
+        }
+    
         if(name){
             product.name = name;
         }
@@ -168,13 +187,22 @@ export const deleteProduct = async (req, res) => {
             });
         }
 
-        if(userId !== product.user){
+        if(userId !== product.user._id.toString()){
             return res.status(400).json({
                 message : "You are not the owner of this product"
             });
         }
 
-        await product.delete();
+        // Delete this line
+        // await product.delete();
+        await Product.findByIdAndDelete(id);
+
+        // Add this line
+        await User.findByIdAndUpdate(userId, {
+            $pull : {
+                product : product._id
+            }
+        });
 
         return res.status(200).json({
             message : "Product deleted successfully"

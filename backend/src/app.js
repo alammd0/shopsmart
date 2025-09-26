@@ -16,7 +16,7 @@ app.use("/api/v1/product", productRoutes)
 app.use("/api/v1/category", categoryRoutes)
 app.use("/api/v1/cart", cartRoutes)
 app.use("/api/v1/orders", orderRoutes)
-app.use("/api/v1/ratingAndReview", ratingAndReviewRoutes)   
+app.use("/api/v1/ratings-reviews", ratingAndReviewRoutes)   
 app.use("/api/v1/admin", adminRoutes)
 
 app.get("/" , (req, res) => {

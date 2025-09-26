@@ -27,12 +27,12 @@ const userSchema = new mongoose.Schema({
         enum : ["Seller",  "Buyer"],
     },
 
-    cart : [
-        {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'Cart'
-        }
-    ],
+    // change here
+    cart : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Cart',
+        default : null
+    },
 
     orders : [
         {
