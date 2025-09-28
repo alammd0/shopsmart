@@ -1,23 +1,16 @@
-import { useDispatch, useSelector } from "react-redux"
-import { decrement, increment } from "./app/slice/counterSlice";
-// import { disconnect } from "mongoose";
+import { useSelector } from 'react-redux'
 
 function App() {
 
-  const count = useSelector( (state) => state.counter.count);
-  const dispatch = useDispatch();
+  const user = useSelector(state => state.auth.user)
+  console.log(user);
+
+  const token = useSelector(state => state.auth.token)
+  console.log(token);
 
   return (
     <>
-      {/* <h1 className="text-3xl bg-red-900 text-white">Hello world</h1> */}
-
-      <div>
-        <button onClick={() => dispatch(increment())}>Increment</button>
-
-        <p>count = {count}</p>
-
-        <button onClick={() => dispatch(decrement())}>Decrement</button>
-      </div>
+      <h1>Hello world</h1>
     </>
   )
 }
