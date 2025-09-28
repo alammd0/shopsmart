@@ -7,7 +7,6 @@ import { createAddress, updateAddress } from "../controllers/address.controller.
 const router = express.Router();
 
 router.post("/register", register);
-
 router.post("/login", login);
 
 
