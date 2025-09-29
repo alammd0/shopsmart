@@ -1,16 +1,16 @@
-import { useSelector } from 'react-redux'
+import { Route, Routes } from "react-router-dom"
+import MainLayout from "./MainLayout"
+import Home from "./pages/Home"
 
 function App() {
 
-  const user = useSelector(state => state.auth.user)
-  console.log(user);
-
-  const token = useSelector(state => state.auth.token)
-  console.log(token);
-
   return (
     <>
-      <h1>Hello world</h1>
+      <Routes>
+         <Route path="/" element={<MainLayout/>}>
+            <Route path="/" element = {<Home />} />
+         </Route>
+      </Routes>
     </>
   )
 }
