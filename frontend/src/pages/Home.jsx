@@ -51,7 +51,6 @@ export default function Home() {
                 </section>
 
                 {/* New Arrivals Section */}
-
                 <section className="mt-10 space-y-6">
                     <div className="text-2xl font-bold text-primary">
                         New Arrival Products
@@ -73,6 +72,21 @@ export default function Home() {
                             })
                         }
                     </div>
+                </section>
+
+                {/* join our Community Section */}
+                <section className="mt-14 space-y-4 flex justify-center items-center flex-col">
+                    <div className="text-2xl font-bold text-primary">
+                        Join Our Community
+                    </div>
+
+                    <p>Stay updated with the latest trends, exclusive offers, and the latest news from ShopSmart.</p>
+
+                    <Link to="/auth/signup">
+                        <button className="bg-background text-center text-secondary w-full mb-4 px-3 py-2 rounded-md font-bold hover:bg-background/80 cursor-pointer">
+                            Signup
+                        </button>
+                    </Link>
                 </section>
             </div>
         </div>
