@@ -18,8 +18,8 @@ export default function Home() {
                     <div className="absolute inset-0 bg-black/60 rounded-md"></div>
 
                     <div className="absolute bottom-10 left-10 space-y-4">
-                        <h1 className="text-4xl text-secondary font-bold">Evaluate Your Home</h1>
-                        <p className="text-[14px] text-secondary font-normal">ShopSmart is a home inspection and evaluation service that helps you find the perfect home for your family.</p>
+                        <h1 className="md:text-4xl text-xl text-secondary font-bold">Evaluate Your Home</h1>
+                        <p className="md:text-[14px] text-[10px] text-secondary font-normal">ShopSmart is a home inspection and evaluation service that helps you find the perfect home for your family.</p>
                         <button className="bg-background/90 px-4 py-1 rounded-md cursor-pointer hover:bg-background/50">
                             <Link to="/products">
                                 Shop Now
@@ -35,7 +35,7 @@ export default function Home() {
                         Shop by Category
                     </div>
 
-                    <div className="flex gap-14">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                         {/* category Card - 01 */}
                         <CategoryCard img={Men} title="Men"/>
 
@@ -56,10 +56,9 @@ export default function Home() {
                         New Arrival Products
                     </div>
 
-                    <div className="grid grid-cols-5 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                         {
                             productData.map((item) => {
-                                // console.log(item)
                                 return (
                                     <Card 
                                         key={item.id}
