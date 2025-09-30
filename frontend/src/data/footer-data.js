@@ -18,23 +18,5 @@ export const footerData = [
     "id": 4,
     "label": "Terms of Service",
     "url": "/terms-of-service"
-  },
-  {
-    "id": 5,
-    "label": "Follow Us",
-    "socials": [
-      {
-        "platform": "Twitter",
-        "url": "https://twitter.com/yourbrand"
-      },
-      {
-        "platform": "Facebook",
-        "url": "https://facebook.com/yourbrand"
-      },
-      {
-        "platform": "Instagram",
-        "url": "https://instagram.com/yourbrand"
-      }
-    ]
   }
 ]
