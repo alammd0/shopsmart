@@ -81,7 +81,7 @@ export default function Home() {
 
                     <p>Stay updated with the latest trends, exclusive offers, and the latest news from ShopSmart.</p>
 
-                    <Link to="/auth/signup">
+                    <Link to="/register">
                         <button className="bg-background text-center text-secondary w-full mb-4 px-3 py-2 rounded-md font-bold hover:bg-background/80 cursor-pointer">
                             Signup
                         </button>

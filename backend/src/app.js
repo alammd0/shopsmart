@@ -6,10 +6,17 @@ import cartRoutes from "./routes/cart.route.js";
 import orderRoutes from "./routes/order.route.js";
 import ratingAndReviewRoutes from "./routes/ratingAndReview.route.js";
 import adminRoutes from "./routes/admin.route.js";
+import cors from "cors";
 
 const app = express();
-
 app.use(express.json());
+
+app.use(cors(
+    {
+        origin : "http://localhost:5173",
+        credentials : true
+    }
+))
 
 app.use("/api/v1/auth", authRoute)
 app.use("/api/v1/product", productRoutes)

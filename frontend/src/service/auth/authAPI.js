@@ -1,7 +1,7 @@
 import { APIConnector } from "../apiConnector";
 
 
-export const register = async (data) => {
+export const createUser = async (data) => {
     const response = await APIConnector({
         method : "POST",
         url : "auth/register",
